@@ -13,10 +13,18 @@ class OrderController extends Controller
     public function index(Order $order, Request $request){
         $order_query = $order->newQuery();
         if ($request->input('search')) {
-            $order_query->where('order_name', 'like', '%' . '#' . $request->input('search') . '%');
+//            $order_query->where('order_name', 'like', '%' . '#' . $request->input('search') . '%');
+            $order_query->where(function ($query) use ($request) {
+                $query->orWhereHas('has_items', function ($q) use ($request){
+                    $q->where('property', 'like', '%' .$request->input('search') . '%');
+                });
+            });
         } else {
             $query = null;
         }
+//            $project_query->where('manager_id', Auth::id());
+
+
         $orders = $order_query->latest('order_name', 'DESC')->get();
         $user = User::first();
         $shop = str_replace('.myshopify.com', '', $user->name);
