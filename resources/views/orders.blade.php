@@ -12,6 +12,23 @@
         <div class="col-lg-12 col-sm-12 pt-3">
             <div class="card">
                 <div class="card-body">
+                    <form action="{{ route('order.csv') }}" method="get">
+                        <div class="row">
+                            <div class="col-md-10 col-sm-12">
+                                <input type="text" class="form-control h-100" placeholder="search" name="search"
+                                       @if(isset($request->search)) value="{{ $request->search }}" @endif>
+                            </div>
+                            <div class="col-md-2 col-sm-12">
+                                <button type="submit" class="btn btn-primary w-100 h-100">CSV</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-sm-12 pt-3">
+            <div class="card">
+                <div class="card-body">
                     <form action="{{ route('home') }}" method="get">
                         <div class="row">
                             <div class="col-md-10 col-sm-12">

@@ -36,6 +36,25 @@ class OrderController extends Controller
             'shop' => $shop
         ]);
     }
+    public function csvExport(Order $order, Request $request){
+        $order_query = $order->newQuery();
+        if ($request->input('search')) {
+            if (Str::contains($request->input('search'), '#')) {
+                $order_query->where('order_name', 'like', '%' . $request->input('search') . '%');
+            }else{
+                $order_query->where(function ($query) use ($request) {
+                    $query->orWhereHas('has_items', function ($q) use ($request){
+                        $q->where('property', 'like', '%' .$request->input('search') . '%');
+                    });
+                });
+            }
+
+        } else {
+            $query = null;
+        }
+        $orders = $order_query->latest('order_name', 'DESC')->get();
+        dd($orders);
+    }
     public function ordersSync($next = null)
     {
         $shop = User::first();
