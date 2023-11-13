@@ -11,7 +11,7 @@
             <form action="{{ route('order.csv') }}" method="get">
                      <input type="hidden" class="form-control h-100" placeholder="search" name="search"
                                @if(isset($request->search)) value="{{ $request->search }}" @endif>
-                        <button type="submit" class="btn btn-primary w-100 h-100">Csv Export</button>
+                        <button type="submit" class="btn btn-primary">Csv Export</button>
 
             </form>
         </div>
