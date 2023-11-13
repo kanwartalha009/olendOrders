@@ -16,11 +16,13 @@ class OrderController extends Controller
         $response = $shop->api()->rest('GET', '/admin/api/2022-10/orders.json', ["status" => "any", "limit" => 250]);
         $orders = json_decode(json_encode($response));
         foreach ($orders->body->orders as $order) {
-            dd($order);
+//            dd($order);
+if ($order->id == '5785339560271'){
+    foreach ($order->line_items as $line_item) {
+        dd($line_item);
+    }
+}
 
-            foreach ($order->line_items as $line_item) {
-                dd($line_item);
-            }
 //            $syncOrder = Order::where('order_id', $order->id)->first();
 //            if ($syncOrder == null) {
 //                $syncOrder = new Order();
