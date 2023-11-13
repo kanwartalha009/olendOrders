@@ -19,7 +19,7 @@ class OrderController extends Controller
 //            dd($order);
 
             foreach ($order->line_items as $line_item) {
-                dd($line_item->properties);
+                dd($line_item);
             }
             $syncOrder = Order::where('order_id', $order->id)->first();
             if ($syncOrder == null) {
