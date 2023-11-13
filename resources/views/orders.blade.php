@@ -7,7 +7,7 @@
         </div>
         <div class="col-lg-6 col-sm-6" style="display: flex;
     justify-content: flex-end;">
-            <form action="{{ route('order.csv') }}" method="get">
+            <form action="{{ route('order.csv') }}" class="m-0" method="get">
                      <input type="hidden" class="form-control h-100" placeholder="search" name="search"
                                @if(isset($request->search)) value="{{ $request->search }}" @endif>
                         <button type="submit" class="btn btn-primary">Csv Export</button>
