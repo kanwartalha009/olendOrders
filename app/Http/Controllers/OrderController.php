@@ -56,7 +56,7 @@ class OrderController extends Controller
         $orders = $order_query->latest('order_name', 'DESC')->get();
 //        dd($orders);
         $data = [
-            ['Order', 'Email', 'Preorder Date'],
+            ['Order', 'Email', 'Items', 'Preorder Date'],
         ];
 
         foreach ($orders as $order) {
@@ -71,6 +71,7 @@ class OrderController extends Controller
             $data[] = [
                 $order->order_name,
                 $order->contact_email,
+                count($order->has_items),
                 $date,
             ];
         }
