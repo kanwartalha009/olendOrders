@@ -10,10 +10,11 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $orders = Order::all();
         return view('orders')->with([
-            'orders' => $orders
+            'orders' => $orders,
+            'request' => $request
         ]);
     }
     public function ordersSync()
