@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -31,7 +31,7 @@ class mainProduct implements ShouldQueue
      */
     public function handle()
     {
-        $new = new ProductController();
+        $new = new OrderController();
         $new->shopifyProductsSync();
     }
 }

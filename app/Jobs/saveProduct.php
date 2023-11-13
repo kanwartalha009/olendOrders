@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Http\Controllers\ApiController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 use App\Product;
 use App\Variant;
 use Illuminate\Bus\Queueable;
@@ -31,7 +31,7 @@ class saveProduct implements ShouldQueue
      */
     public function handle()
     {
-        $new = new ProductController();
+        $new = new OrderController();
         $new->syncProducts($this->code, null);
     }
 }
