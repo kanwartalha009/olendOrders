@@ -88,7 +88,7 @@ class OrderController extends Controller
         fclose($file);
 
 // Download the CSV file
-        return response()->download(storage_path('app/' . $filePath), 'sample.csv', [
+        return response()->download(storage_path('app/' . $filePath), str_replace('Pre-order item - Delivery date:', '', $order->has_items[0]->property). 'Orders', [
             'Content-Type' => 'text/csv',
             'Content-Disposition' => 'attachment; filename=sample.csv',
         ]);
