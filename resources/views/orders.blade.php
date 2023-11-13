@@ -14,26 +14,9 @@
                 <div class="card-body">
                     <form action="#" method="get">
                         <div class="row">
-                            <div class="col-md-6 col-sm-12">
+                            <div class="col-md-10 col-sm-12">
                                 <input type="text" class="form-control h-100" placeholder="search" name="query"
                                        @if(isset($query)) value="{{ $query }}" @endif>
-                            </div>
-                            <div class="col-md-4 col-sm-12">
-                                <select name="status" id="" class="form-control h-100">
-                                    <option value="status">All Orders</option>
-                                    <option value="Unfulfilled"
-                                            @if($request->status) @if($request->status == 'Unfulfilled') selected @endif @endif>
-                                        Unfulfilled
-                                    </option>
-                                    <option value="Fulfilled"
-                                            @if($request->status) @if($request->status == 'Fulfilled') selected @endif @endif>
-                                        Fulfilled
-                                    </option>
-                                    <option value="unread"
-                                            @if($request->status) @if($request->status == 'unread') selected @endif @endif>
-                                        New Messages
-                                    </option>
-                                </select>
                             </div>
                             <div class="col-md-2 col-sm-12">
                                 <button type="submit" class="btn btn-primary w-100 h-100">search</button>
@@ -93,6 +76,7 @@
                             <td>
                                 <a href="#">{{ $items }}@if($items == 1)
                                         Item @else Items @endif</a></td>
+                            <td>@foreach($order->has_items as $item) @if($item->property) {{ $item->property }} @endif @endforeach</td>
                         </tr>
                     @endforeach
                     </tbody>
