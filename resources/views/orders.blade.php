@@ -39,8 +39,6 @@
                         <th scope="col">Payment status</th>
                         <th scope="col">Fulfillment status</th>
                         <th scope="col">Items</th>
-                        <th scope="col">Delivery method</th>
-                        <th scope="col">Messages</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -76,7 +74,7 @@
                             <td>
                                 <a href="#">{{ $items }}@if($items == 1)
                                         Item @else Items @endif</a></td>
-                            <td>@foreach($order->has_items as $item) @if($item->property) {{ $item->property }} @endif @endforeach</td>
+                            <td>@foreach($order->has_items as $i=>$item)@if($i == 1) <br> @endif @if($item->property) {{ $item->property }} @endif @endforeach</td>
                         </tr>
                     @endforeach
                     </tbody>
