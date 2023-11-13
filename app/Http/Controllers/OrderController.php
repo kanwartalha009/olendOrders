@@ -55,19 +55,23 @@ class OrderController extends Controller
         }
         $orders = $order_query->latest('order_name', 'DESC')->get();
 //        dd($orders);
-
-
-// Sample data for the CSV file
         $data = [
-            ['Name', 'Email', 'Phone'],
-            ['John Doe', 'john@example.com', '555-1234'],
-            ['Jane Doe', 'jane@example.com', '555-5678'],
-            // Add more rows as needed
+            ['Order', 'Email', 'Preorder Date'],
         ];
 
+        foreach ($orders as $order) {
+            $date ='';
+            if (count($order->has_items) == 1){
+                $date = $order->has_items[0]->property;
+            }
+            $data[] = [
+                $order->order_name,
+                $order->contact_email,
+                $date,
+            ];
+        }
 // File path for the CSV file
         $filePath = 'csv/' . Str::random(10) . '.csv';
-
 // Create and write to the CSV file
         Storage::disk('local')->put($filePath, '');
 
