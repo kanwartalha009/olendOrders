@@ -27,7 +27,7 @@ class OrderController extends Controller
         } else {
             $query = null;
         }
-        $orders = $order_query->latest('order_name', 'DESC')->paginate(50);
+        $orders = $order_query->latest('order_name', 'DESC')->paginate(100);
         $user = User::first();
         $shop = str_replace('.myshopify.com', '', $user->name);
         return view('orders')->with([
