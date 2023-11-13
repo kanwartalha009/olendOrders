@@ -42,13 +42,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php $i = ($orders->currentpage()-1)* $orders->perpage() + 1; ?>
-                    @foreach($orders as $order)
+                    @foreach($orders as $i=>$order)
                         @php
                             $items = count($order->has_items);
                         @endphp
                         <tr data-url="#">
-                            <th scope="row">{{ $i++ }}</th>
+                            <th scope="row">{{ ++$i }}</th>
                             <td>
                                 <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}" target="_blank">{{ $order->order_name }}</a>
                             </td>
@@ -80,7 +79,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                {{ $orders->appends(['search' => $request->search, 'source' => $request->source])->links() }}
+                {{ $orders->appends(['search' => $request->search])->links() }}
             @else
                 <h6 class="text-center mt-5">No Order Found !</h6>
             @endif
