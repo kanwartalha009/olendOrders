@@ -196,7 +196,7 @@ return [
     | This option is for the scopes your application needs in the API.
     |
     */
-    'api_scopes' => env('SHOPIFY_API_SCOPES', 'read_products,write_products,unauthenticated_read_product_listings, read_markets, write_markets'),
+    'api_scopes' => env('SHOPIFY_API_SCOPES', 'read_orders,write_orders'),
 
 
     /*
