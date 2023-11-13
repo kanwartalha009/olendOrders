@@ -5,15 +5,16 @@
         <div class="col-lg-6 col-sm-6">
             <h5>Orders</h5>
         </div>
-        <div class="col-lg-6 col-sm-6 text-right">
-            <a href="{{ route('order.sync') }}" target="_blank" class="btn btn-primary">Sync
-                Orders</a>
+        <div class="col-lg-6 col-sm-6" style="display: flex;
+    justify-content: flex-end;">
             <form action="{{ route('order.csv') }}" method="get">
                      <input type="hidden" class="form-control h-100" placeholder="search" name="search"
                                @if(isset($request->search)) value="{{ $request->search }}" @endif>
                         <button type="submit" class="btn btn-primary">Csv Export</button>
 
             </form>
+            <a href="{{ route('order.sync') }}" target="_blank" class="btn btn-primary ml-2">Sync
+                Orders</a>
         </div>
         <div class="col-lg-12 col-sm-12 pt-3">
             <div class="card">
