@@ -15,8 +15,8 @@
                     <form action="{{ route('home') }}" method="get">
                         <div class="row">
                             <div class="col-md-10 col-sm-12">
-                                <input type="text" class="form-control h-100" placeholder="search" name="query"
-                                       @if(isset($request->query)) value="{{ $request->query }}" @endif>
+                                <input type="text" class="form-control h-100" placeholder="search" name="search"
+                                       @if(isset($request->search)) value="{{ $request->search }}" @endif>
                             </div>
                             <div class="col-md-2 col-sm-12">
                                 <button type="submit" class="btn btn-primary w-100 h-100">search</button>

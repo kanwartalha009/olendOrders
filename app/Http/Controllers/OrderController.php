@@ -12,9 +12,8 @@ class OrderController extends Controller
 {
     public function index(Order $order, Request $request){
         $order_query = $order->newQuery();
-        if ($request->input('query')) {
-            $order_query->where('order_name', 'like', '%' . '#' . $request->input('query') . '%');
-            $query = $request->input('query');
+        if ($request->input('search')) {
+            $order_query->where('order_name', 'like', '%' . '#' . $request->input('search') . '%');
         } else {
             $query = null;
         }
