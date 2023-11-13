@@ -31,14 +31,14 @@
                 <table class="table table-hover">
                     <thead>
                     <tr data-url="head">
-                        <th scope="col">#</th>
-                        <th scope="col">Order</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Payment status</th>
-                        <th scope="col">Fulfillment status</th>
-                        <th scope="col">Items</th>
-                        <th scope="col">Preorder</th>
+                        <th scope="col" style="width: 5%;">#</th>
+                        <th scope="col" style="width: 5%;">Order</th>
+                        <th scope="col" style="width: 10%;">Date</th>
+                        <th scope="col" style="width: 10%;">Total</th>
+                        <th scope="col" style="width: 10%;">Payment status</th>
+                        <th scope="col" style="width: 15%;">Fulfillment status</th>
+                        <th scope="col" style="width: 10%;">Items</th>
+                        <th scope="col" style="width: 35%;">Preorder</th>
                     </tr>
                     </thead>
                     <tbody>
