@@ -13,7 +13,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "maatwebsite/excel": "^3.1",
-        "osiset/laravel-shopify": "^17.3"
+        "osiset/laravel-shopify": "^16.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
