@@ -49,7 +49,6 @@ class OrderController extends Controller
             $syncOrder = Order::where('order_id', $order->id)->first();
             if ($syncOrder == null) {
                 $syncOrder = new Order();
-            }
             $syncOrder->order_id = $order->id;
             $syncOrder->order_name = $order->name;
             $syncOrder->browser_ip = $order->browser_ip;
@@ -87,6 +86,7 @@ class OrderController extends Controller
                 $syncItem->order_id = $syncOrder->id;
                 $syncItem->save();
             }
+        }
         }
         if (isset($orders->link->next)) {
             $this->ordersSync($orders->link->next);
