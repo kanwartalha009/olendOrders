@@ -6,11 +6,8 @@
             <h5>Orders</h5>
         </div>
         <div class="col-lg-6 col-sm-6 text-right">
-            <a href="{{ \Illuminate\Support\Facades\URL::tokenRoute('images.all') }}" class="btn btn-primary">Saved Images</a>
-            <a href="{{ \Illuminate\Support\Facades\URL::tokenRoute('messages.all') }}" class="btn btn-primary">Saved Messages</a>
-            <a href="{{ \Illuminate\Support\Facades\URL::tokenRoute('order.sync') }}" class="btn btn-primary">Sync Orders</a>
-            <a href="{{ \Illuminate\Support\Facades\URL::tokenRoute('product.sync') }}" class="btn btn-primary">Sync
-                Products</a>
+            <a href="}" class="btn btn-primary">Sync
+                Orders</a>
         </div>
         <div class="col-lg-12 col-sm-12 pt-3">
             <div class="card">
