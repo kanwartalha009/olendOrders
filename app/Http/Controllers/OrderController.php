@@ -64,9 +64,13 @@ class OrderController extends Controller
             if (count($order->has_items) == 1){
                 $date = str_replace('Pre-order item - Delivery date:', '', $order->has_items[0]->property);
             }else{
-                foreach ($order->has_items as $item) {
+                foreach ($order->has_items as $i=>$item) {
                     if ($item->property){
-                        $date .= str_replace('Pre-order item - Delivery date:', '', $item->property) . ',';
+                        if ($i != 0){
+                            $date .= ','.str_replace('Pre-order item - Delivery date:', '', $item->property);
+                        }else{
+                            $date .= str_replace('Pre-order item - Delivery date:', '', $item->property);
+                        }
                     }
                 }
             }
