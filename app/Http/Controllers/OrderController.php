@@ -56,6 +56,7 @@ class OrderController extends Controller
         $orders = $order_query->latest('order_name', 'DESC')->get();
 //        dd($orders);
 
+
 // Sample data for the CSV file
         $data = [
             ['Name', 'Email', 'Phone'],
@@ -78,8 +79,11 @@ class OrderController extends Controller
 
         fclose($file);
 
-// Output the file path
-        echo 'CSV file created at: ' . storage_path('app/' . $filePath);
+// Download the CSV file
+        return response()->download(storage_path('app/' . $filePath), 'sample.csv', [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename=sample.csv',
+        ]);
 
     }
     public function ordersSync($next = null)
