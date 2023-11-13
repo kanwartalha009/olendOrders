@@ -56,25 +56,22 @@ class OrderController extends Controller
         $orders = $order_query->latest('order_name', 'DESC')->get();
 //        dd($orders);
         $data = [
-            ['Order', 'Email', 'Preorder Date 1', 'Preorder Date 2'],
+            ['Order', 'Email', 'Preorder Date'],
         ];
 
         foreach ($orders as $order) {
             $date ='';
-            $date1 ='';
             if (count($order->has_items) == 1){
                 $date = str_replace('Pre-order item - Delivery date:', '', $order->has_items[0]->property);
             }else{
-                $date = str_replace('Pre-order item - Delivery date:', '', $order->has_items[0]->property);
-                if ($order->has_items[0]->property != $order->has_items[1]->property){
-                    $date1 = str_replace('Pre-order item - Delivery date:', '', $order->has_items[1]->property);
-               }
+                foreach ($order->has_items as $item) {
+                    $date = str_replace('Pre-order item - Delivery date:', '', $item->property) . ',';
+                }
             }
             $data[] = [
                 $order->order_name,
                 $order->contact_email,
                 $date,
-                $date1
             ];
         }
 // File path for the CSV file
@@ -91,9 +88,9 @@ class OrderController extends Controller
         fclose($file);
 
 // Download the CSV file
-        return response()->download(storage_path('app/' . $filePath), str_replace('Pre-order item - Delivery date:', '', $order->has_items[0]->property). 'Orders', [
+        return response()->download(storage_path('app/' . $filePath), str_replace('Pre-order item - Delivery date:', '', $order->has_items[0]->property). 'Orders.csv', [
             'Content-Type' => 'text/csv',
-            'Content-Disposition' => 'attachment; filename=sample.csv',
+            'Content-Disposition' => 'attachment; filename='.str_replace('Pre-order item - Delivery date:', '', $order->has_items[0]->property). 'Orders.csv',
         ]);
 
     }
