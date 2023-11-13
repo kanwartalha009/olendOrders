@@ -74,7 +74,7 @@
                             <td>
                                 <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}">{{ $items }}@if($items == 1)
                                         Item @else Items @endif</a></td>
-                            <td>@foreach($order->has_items as $i=>$item)@if($i == 1) <br> @endif @if($item->property) {{ $item->property }} @endif @endforeach</td>
+                            <td>@foreach($order->has_items as $i=>$item)@if($item->property) {{ $item->property }} @endif @if(count($order->has_items) > 1) <br> @endif @endforeach</td>
                         </tr>
                     @endforeach
                     </tbody>
