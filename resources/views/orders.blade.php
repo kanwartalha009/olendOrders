@@ -84,15 +84,5 @@
             @endif
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('tr').on('click', function () {
-                if ($(this).data('url') != 'head') {
-                    window.location = $(this).data('url');
-                }
-            });
-        });
-    </script>
 @endsection
 
