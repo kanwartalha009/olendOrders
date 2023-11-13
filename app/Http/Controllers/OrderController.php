@@ -65,7 +65,9 @@ class OrderController extends Controller
                 $date = str_replace('Pre-order item - Delivery date:', '', $order->has_items[0]->property);
             }else{
                 foreach ($order->has_items as $item) {
-                    $date .= str_replace('Pre-order item - Delivery date:', '', $item->property) . ',';
+                    if ($item->property){
+                        $date .= str_replace('Pre-order item - Delivery date:', '', $item->property) . ',';
+                    }
                 }
             }
             $data[] = [
