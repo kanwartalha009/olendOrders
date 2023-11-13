@@ -56,22 +56,25 @@ class OrderController extends Controller
         $orders = $order_query->latest('order_name', 'DESC')->get();
 //        dd($orders);
         $data = [
-            ['Order', 'Email', 'Preorder Date'],
+            ['Order', 'Email', 'Preorder Date 1', 'Preorder Date 2'],
         ];
 
         foreach ($orders as $order) {
             $date ='';
+            $date1 ='';
             if (count($order->has_items) == 1){
                 $date = str_replace('Pre-order item - Delivery date:', '', $order->has_items[0]->property);
             }else{
-                foreach ($order->has_items as $item) {
-                    $date .= str_replace('Pre-order item - Delivery date:', '', $item) . ',';
-                }
+                $date = str_replace('Pre-order item - Delivery date:', '', $order->has_items[0]->property);
+                if ($order->has_items[0]->property != $order->has_items[1]->property){
+                    $date1 = str_replace('Pre-order item - Delivery date:', '', $order->has_items[1]->property);
+               }
             }
             $data[] = [
                 $order->order_name,
                 $order->contact_email,
                 $date,
+                $date1
             ];
         }
 // File path for the CSV file
