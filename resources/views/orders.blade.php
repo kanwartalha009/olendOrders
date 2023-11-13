@@ -6,7 +6,7 @@
             <h5>Orders</h5>
         </div>
         <div class="col-lg-6 col-sm-6 text-right">
-            <a href="}" class="btn btn-primary">Sync
+            <a href="{{ route('order.sync') }}" class="btn btn-primary">Sync
                 Orders</a>
         </div>
         <div class="col-lg-12 col-sm-12 pt-3">

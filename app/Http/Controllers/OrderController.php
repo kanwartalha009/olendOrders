@@ -36,10 +36,14 @@ class OrderController extends Controller
             'shop' => $shop
         ]);
     }
-    public function ordersSync()
+    public function ordersSync($next = null)
     {
         $shop = User::first();
-        $response = $shop->api()->rest('GET', '/admin/api/2022-10/orders.json', ["status" => "any", "limit" => 250]);
+        if ($next){
+            $response = $shop->api()->rest('GET', '/admin/api/2022-10/orders.json', ["page_info" => $next,"limit" => 250]);
+        }else{
+            $response = $shop->api()->rest('GET', '/admin/api/2022-10/orders.json', ["limit" => 250, "status" => 'any']);
+        }
         $orders = json_decode(json_encode($response));
         foreach ($orders->body->orders as $order) {
             $syncOrder = Order::where('order_id', $order->id)->first();
@@ -83,6 +87,9 @@ class OrderController extends Controller
                 $syncItem->order_id = $syncOrder->id;
                 $syncItem->save();
             }
+        }
+        if (isset($orders->link->next)) {
+            $this->ordersSync($orders->link->next);
         }
     }
 }
