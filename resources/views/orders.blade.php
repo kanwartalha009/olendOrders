@@ -8,23 +8,12 @@
         <div class="col-lg-6 col-sm-6 text-right">
             <a href="{{ route('order.sync') }}" target="_blank" class="btn btn-primary">Sync
                 Orders</a>
-        </div>
-        <div class="col-lg-12 col-sm-12 pt-3">
-            <div class="card">
-                <div class="card-body">
-                    <form action="{{ route('order.csv') }}" method="get">
-                        <div class="row">
-                            <div class="col-md-10 col-sm-12">
-                                <input type="text" class="form-control h-100" placeholder="search" name="search"
-                                       @if(isset($request->search)) value="{{ $request->search }}" @endif>
-                            </div>
-                            <div class="col-md-2 col-sm-12">
-                                <button type="submit" class="btn btn-primary w-100 h-100">CSV</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            <form action="{{ route('order.csv') }}" method="get">
+                     <input type="hidden" class="form-control h-100" placeholder="search" name="search"
+                               @if(isset($request->search)) value="{{ $request->search }}" @endif>
+                        <button type="submit" class="btn btn-primary w-100 h-100">Csv Export</button>
+
+            </form>
         </div>
         <div class="col-lg-12 col-sm-12 pt-3">
             <div class="card">
