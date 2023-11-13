@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class OrderController extends Controller
@@ -53,7 +54,33 @@ class OrderController extends Controller
             $query = null;
         }
         $orders = $order_query->latest('order_name', 'DESC')->get();
-        dd($orders);
+//        dd($orders);
+
+// Sample data for the CSV file
+        $data = [
+            ['Name', 'Email', 'Phone'],
+            ['John Doe', 'john@example.com', '555-1234'],
+            ['Jane Doe', 'jane@example.com', '555-5678'],
+            // Add more rows as needed
+        ];
+
+// File path for the CSV file
+        $filePath = 'csv/' . Str::random(10) . '.csv';
+
+// Create and write to the CSV file
+        Storage::disk('local')->put($filePath, '');
+
+        $file = fopen(storage_path('app/' . $filePath), 'w');
+
+        foreach ($data as $row) {
+            fputcsv($file, $row);
+        }
+
+        fclose($file);
+
+// Output the file path
+        echo 'CSV file created at: ' . storage_path('app/' . $filePath);
+
     }
     public function ordersSync($next = null)
     {
