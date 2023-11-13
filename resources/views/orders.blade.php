@@ -79,6 +79,7 @@
                     @endforeach
                     </tbody>
                 </table>
+                {{ $orders->links() }}
             @else
                 <h6 class="text-center mt-5">No Order Found !</h6>
             @endif
