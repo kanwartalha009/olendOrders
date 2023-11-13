@@ -10,8 +10,15 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function index(Request $request){
-        $orders = Order::all();
+    public function index(Order $order, Request $request){
+        $order_query = $order->newQuery();
+        if ($request->input('query')) {
+            $order_query->where('order_name', 'like', '%' . '#' . $request->input('query') . '%');
+            $query = $request->input('query');
+        } else {
+            $query = null;
+        }
+        $orders = $order_query->latest('order_name', 'DESC')->get();
         $user = User::first();
         $shop = str_replace('.myshopify.com', '', $user->name);
         return view('orders')->with([
