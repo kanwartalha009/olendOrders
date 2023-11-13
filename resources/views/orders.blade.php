@@ -49,7 +49,7 @@
                         <tr data-url="#">
                             <th scope="row">{{ ++$i }}</th>
                             <td>
-                                <a href="#">{{ $order->order_name }}</a>
+                                <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}">{{ $order->order_name }}</a>
                             </td>
                             <td>
                                 <a href="#">{{  \Carbon\Carbon::parse( $order->order_created_at)->format('d M H:i') }}</a>

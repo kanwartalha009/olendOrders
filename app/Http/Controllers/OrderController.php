@@ -12,9 +12,12 @@ class OrderController extends Controller
 {
     public function index(Request $request){
         $orders = Order::all();
+        $user = User::first();
+        $shop = str_replace('.myshopify.com', '', $user->name);
         return view('orders')->with([
             'orders' => $orders,
-            'request' => $request
+            'request' => $request,
+            'shop' => $shop
         ]);
     }
     public function ordersSync()
