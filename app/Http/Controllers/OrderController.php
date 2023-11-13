@@ -19,7 +19,7 @@ class OrderController extends Controller
 //            dd($order);
 if ($order->id == '5785339560271'){
     foreach ($order->line_items as $line_item) {
-        dd($line_item->properties[0]);
+        dd($line_item->properties[0]->name);
     }
 }
 
