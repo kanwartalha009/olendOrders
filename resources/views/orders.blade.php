@@ -12,7 +12,7 @@
         <div class="col-lg-12 col-sm-12 pt-3">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('search.all') }}" method="get">
+                    <form action="#" method="get">
                         <div class="row">
                             <div class="col-md-6 col-sm-12">
                                 <input type="text" class="form-control h-100" placeholder="search" name="query"
