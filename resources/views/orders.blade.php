@@ -34,11 +34,11 @@
                         <th scope="col">#</th>
                         <th scope="col">Order</th>
                         <th scope="col">Date</th>
-                        <th scope="col">Customer</th>
                         <th scope="col">Total</th>
                         <th scope="col">Payment status</th>
                         <th scope="col">Fulfillment status</th>
                         <th scope="col">Items</th>
+                        <th scope="col">Preorder</th>
                     </tr>
                     </thead>
                     <tbody>
