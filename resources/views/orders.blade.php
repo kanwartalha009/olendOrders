@@ -49,30 +49,30 @@
                         <tr data-url="#">
                             <th scope="row">{{ ++$i }}</th>
                             <td>
-                                <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}">{{ $order->order_name }}</a>
+                                <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}" target="_blank">{{ $order->order_name }}</a>
                             </td>
                             <td>
-                                <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}">{{  \Carbon\Carbon::parse( $order->order_created_at)->format('d M H:i') }}</a>
+                                <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}" target="_blank">{{  \Carbon\Carbon::parse( $order->order_created_at)->format('d M H:i') }}</a>
                             </td>
                             <td>
-                                <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}">${{ $order->current_total_price }}</a>
+                                <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}" target="_blank">${{ $order->current_total_price }}</a>
                             </td>
                             <td class="text-capitalize">
-                                <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}">
+                                <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}" target="_blank">
                                     @if($order->financial_status) <span
                                         class="badge bg-light">{{ $order->financial_status }}</span> @else <span
                                         class="badge bg-warning">Unpaid</span> @endif
                                 </a>
                             </td>
                             <td class="text-capitalize">
-                                <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}">
+                                <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}" target="_blank">
                                     @if($order->fulfillment_status)<span
                                         class="badge bg-light">{{ $order->fulfillment_status }}</span>@else<span
                                         class="badge bg-warning">Unfulfilled</span> @endif
                                 </a>
                             </td>
                             <td>
-                                <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}">{{ $items }}@if($items == 1)
+                                <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}" target="_blank">{{ $items }}@if($items == 1)
                                         Item @else Items @endif</a></td>
                             <td>@foreach($order->has_items as $i=>$item)@if($item->property) {{ $item->property }} @endif @if(count($order->has_items) > 1) <br> @endif @endforeach</td>
                         </tr>
