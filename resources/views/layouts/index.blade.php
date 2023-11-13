@@ -151,10 +151,6 @@
             background: rgba(35, 46, 60, 0.08) url(http://i.stack.imgur.com/FhHRx.gif) 50% 50% no-repeat;
         }
     </style>
-    <?php
-    header("Content-Security-Policy: frame-ancestors https://".\Illuminate\Support\Facades\
-    Auth::user()->name." https://admin.shopify.com;");
-    ?>
 </head>
 
 <body>
@@ -162,16 +158,16 @@
 <nav class="navbar navbar-expand p-0 bg-dark">
     <div class="navbar-brand col-xs-12 col-md-12 col-lg-12 mr-0">
         <ul class="polished-sidebar-menu top-menu mb-0 ml-0 ">
-            <li class="{{ \Illuminate\Support\Facades\Request::is('/')? 'active': '' }} mr-4"><a href="{{ \Illuminate\Support\Facades\URL::tokenRoute('home') }}" class="text-white">Products</a></li>
+{{--            <li class="{{ \Illuminate\Support\Facades\Request::is('/')? 'active': '' }} mr-4"><a href="{{ \Illuminate\Support\Facades\URL::tokenRoute('home') }}" class="text-white">Products</a></li>--}}
 {{--            <li class=" mr-4"><a href="{{ \Illuminate\Support\Facades\URL::tokenRoute('pricing.sync') }}" class="text-white">Sync</a></li>--}}
-            <li class=" mr-4"><a href="{{ \Illuminate\Support\Facades\URL::tokenRoute('country.all') }}" class="text-white">Country</a></li>
-@php $user = \App\Models\User::first(); @endphp
-            @if($user->name == 'beatriz-536.myshopify.com')
-            <li class=" mr-4"><a href="{{ \Illuminate\Support\Facades\URL::tokenRoute('products.all') }}" class="text-white">Main Store Products</a></li>
-            @endif
-            @if($user->name == 'moondaybrand.myshopify.com')
-                <li class=" mr-4"><a href="{{ \Illuminate\Support\Facades\URL::tokenRoute('return.all') }}" class="text-white">Return & Exchange</a></li>
-            @endif
+{{--            <li class=" mr-4"><a href="{{ \Illuminate\Support\Facades\URL::tokenRoute('country.all') }}" class="text-white">Country</a></li>--}}
+{{--@php $user = \App\Models\User::first(); @endphp--}}
+{{--            @if($user->name == 'beatriz-536.myshopify.com')--}}
+{{--            <li class=" mr-4"><a href="{{ \Illuminate\Support\Facades\URL::tokenRoute('products.all') }}" class="text-white">Main Store Products</a></li>--}}
+{{--            @endif--}}
+{{--            @if($user->name == 'moondaybrand.myshopify.com')--}}
+{{--                <li class=" mr-4"><a href="{{ \Illuminate\Support\Facades\URL::tokenRoute('return.all') }}" class="text-white">Return & Exchange</a></li>--}}
+{{--            @endif--}}
         </ul>
     </div>
 
@@ -189,68 +185,6 @@
         </div>
     </div>
 </div>
-@if(\Osiset\ShopifyApp\Util::getShopifyConfig('appbridge_enabled') && \Osiset\ShopifyApp\Util::useNativeAppBridge())
-    <script src="https://unpkg.com/@shopify/app-bridge{{ \Osiset\ShopifyApp\Util::getShopifyConfig('appbridge_version') ? '@'.config('shopify-app.appbridge_version') : '' }}"></script>
-    <script src="https://unpkg.com/@shopify/app-bridge-utils{{ \Osiset\ShopifyApp\Util::getShopifyConfig('appbridge_version') ? '@'.config('shopify-app.appbridge_version') : '' }}"></script>
-    <script
-        @if(\Osiset\ShopifyApp\Util::getShopifyConfig('turbo_enabled'))
-        data-turbolinks-eval="false"
-        @endif
-    >
-        var AppBridge = window['app-bridge'];
-        var actions = AppBridge.actions;
-        var utils = window['app-bridge-utils'];
-        var createApp = AppBridge.default;
-        var app = createApp({
-            apiKey: "{{ \Osiset\ShopifyApp\Util::getShopifyConfig('api_key', $shopDomain ?? Auth::user()->name ) }}",
-            host: "{{ \Request::get('host') }}",
-            forceRedirect: true,
-        });
-    </script>
-
-    @include('shopify-app::partials.token_handler')
-    @include('shopify-app::partials.flash_messages')
-@endif
-{{--@if(\Osiset\ShopifyApp\Util::getShopifyConfig('appbridge_enabled'))--}}
-
-{{--    <script--}}
-{{--        src="https://unpkg.com/@shopify/app-bridge{{ \Osiset\ShopifyApp\Util::getShopifyConfig('appbridge_version') ? '@'.config('shopify-app.appbridge_version') : '' }}"></script>--}}
-{{--    <script--}}
-{{--        src="https://unpkg.com/@shopify/app-bridge-utils{{ \Osiset\ShopifyApp\Util::getShopifyConfig('appbridge_version') ? '@'.config('shopify-app.appbridge_version') : '' }}"></script>--}}
-
-{{--    @php--}}
-
-{{--        $host = base64_decode(session('host'));--}}
-
-{{--          if (str_contains($host, 'admin.shopify.com') || $host==''){--}}
-{{--              $shopOrigin= 'admin.shopify.com';--}}
-{{--          }else{--}}
-{{--              $shopOrigin=Auth::user()->name;--}}
-{{--          }--}}
-
-{{--    @endphp--}}
-{{--    <script--}}
-{{--        @if(\Osiset\ShopifyApp\Util::getShopifyConfig('turbo_enabled'))--}}
-{{--        data-turbolinks-eval="false"--}}
-{{--        @endif--}}
-{{--    >--}}
-{{--        var AppBridge = window['app-bridge'];--}}
-{{--        var actions = AppBridge.actions;--}}
-{{--        var utils = window['app-bridge-utils'];--}}
-{{--        var createApp = AppBridge.default;--}}
-{{--        var app = createApp({--}}
-{{--            apiKey: "{{ \Osiset\ShopifyApp\Util::getShopifyConfig('api_key', $shopDomain ?? Auth::user()->name ) }}",--}}
-{{--            shopOrigin: "{{ $shopOrigin}}",--}}
-{{--            // shopOrigin: "admin.shopify.com",--}}
-{{--            --}}{{--host: "{{ \Request::get('host') }}",--}}
-{{--            host: "{{ session('host') }}",--}}
-{{--            forceRedirect: true,--}}
-{{--        });--}}
-{{--    </script>--}}
-
-{{--    @include('shopify-app::partials.token_handler')--}}
-{{--    @include('shopify-app::partials.flash_messages')--}}
-{{--@endif--}}
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
