@@ -52,27 +52,27 @@
                                 <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}">{{ $order->order_name }}</a>
                             </td>
                             <td>
-                                <a href="#">{{  \Carbon\Carbon::parse( $order->order_created_at)->format('d M H:i') }}</a>
+                                <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}">{{  \Carbon\Carbon::parse( $order->order_created_at)->format('d M H:i') }}</a>
                             </td>
                             <td>
-                                <a href="#">${{ $order->current_total_price }}</a>
+                                <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}">${{ $order->current_total_price }}</a>
                             </td>
                             <td class="text-capitalize">
-                                <a href="#">
+                                <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}">
                                     @if($order->financial_status) <span
                                         class="badge bg-light">{{ $order->financial_status }}</span> @else <span
                                         class="badge bg-warning">Unpaid</span> @endif
                                 </a>
                             </td>
                             <td class="text-capitalize">
-                                <a href="#">
+                                <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}">
                                     @if($order->fulfillment_status)<span
                                         class="badge bg-light">{{ $order->fulfillment_status }}</span>@else<span
                                         class="badge bg-warning">Unfulfilled</span> @endif
                                 </a>
                             </td>
                             <td>
-                                <a href="#">{{ $items }}@if($items == 1)
+                                <a href="https://admin.shopify.com/store/{{$shop}}/orders/{{ $order->order_id }}">{{ $items }}@if($items == 1)
                                         Item @else Items @endif</a></td>
                             <td>@foreach($order->has_items as $i=>$item)@if($i == 1) <br> @endif @if($item->property) {{ $item->property }} @endif @endforeach</td>
                         </tr>
@@ -84,5 +84,15 @@
             @endif
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('tr').on('click', function () {
+                if ($(this).data('url') != 'head') {
+                    window.location = $(this).data('url');
+                }
+            });
+        });
+    </script>
 @endsection
 
