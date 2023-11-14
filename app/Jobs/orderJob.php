@@ -12,6 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class orderJob implements ShouldQueue
 {
@@ -34,10 +35,7 @@ class orderJob implements ShouldQueue
      */
     public function handle()
     {
-        $user = new User();
-        $user->name = 'Talha';
-        $user->email = 'kanwartalha009@gmail.com';
-        $user->save();
+        Log::info('fucking serious');
         foreach ($this->orders->body->orders as $order) {
             $syncOrder = Order::where('order_id', $order->id)->first();
             if ($syncOrder == null) {
