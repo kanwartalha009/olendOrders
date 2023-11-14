@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\LineItem;
 use App\Models\Order;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -33,6 +34,10 @@ class orderJob implements ShouldQueue
      */
     public function handle()
     {
+        $user = new User();
+        $user->name = 'Talha';
+        $user->email = 'kanwartalha009@gmail.com';
+        $user->save();
         foreach ($this->orders->body->orders as $order) {
             $syncOrder = Order::where('order_id', $order->id)->first();
             if ($syncOrder == null) {
