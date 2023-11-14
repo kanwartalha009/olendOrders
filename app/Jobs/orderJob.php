@@ -13,7 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
-
+use DateTime;
 class orderJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -35,7 +35,6 @@ class orderJob implements ShouldQueue
      */
     public function handle()
     {
-        Log::info('fucking serious');
         foreach ($this->orders->body->orders as $order) {
             $syncOrder = Order::where('order_id', $order->id)->first();
             if ($syncOrder == null) {
@@ -81,5 +80,6 @@ class orderJob implements ShouldQueue
                 $syncItem->save();
             }
         }
+        Log::info('fucking serious');
     }
 }
