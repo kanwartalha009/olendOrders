@@ -117,7 +117,12 @@ class OrderController extends Controller
             $response = $shop->api()->rest('GET', '/admin/api/2022-10/orders.json', ["limit" => 250, "status" => 'any']);
         }
         $orders = json_decode(json_encode($response));
-        dd($orders);
+        if (isset($orders->link->next)){
+
+        }else{
+
+            dd($orders);
+        }
         orderJob::dispatchAfterResponse($orders);
         if (isset($orders->link->next)) {
             $this->ordersSync($orders->link->next);
