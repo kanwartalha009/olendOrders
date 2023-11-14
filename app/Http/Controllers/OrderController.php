@@ -121,6 +121,6 @@ class OrderController extends Controller
         if (isset($orders->link->next)) {
             $this->ordersSync($orders->link->next);
         }
-        return redirect()->route('home')->with('success', 'Orders Synced !');
+        return redirect()->route('home')->with('success', 'Orders Syncing!');
     }
 }
