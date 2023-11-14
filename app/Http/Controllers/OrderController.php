@@ -61,10 +61,10 @@ class OrderController extends Controller
         $orders = $order_query->latest('order_name', 'DESC')->get();
 //        dd($orders);
         $data = [
-            ['#', 'Order', 'Email', 'Items', 'Preorder Date'],
+            ['Order', 'Email', 'Items', 'Preorder Date'],
         ];
 
-        foreach ($orders as $i => $order) {
+        foreach ($orders as $order) {
             $date = '';
             if (count($order->has_items) == 1) {
                 $date = str_replace('Pre-order item - Delivery date:', '', $order->has_items[0]->property);
@@ -80,7 +80,6 @@ class OrderController extends Controller
                 }
             }
             $data[] = [
-                ++$i,
                 $order->order_name,
                 $order->contact_email,
                 count($order->has_items),
