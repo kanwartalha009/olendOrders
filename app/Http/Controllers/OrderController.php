@@ -110,7 +110,14 @@ class OrderController extends Controller
     public function ordersSync($next = null)
     {
         $shop = User::first();
-        dd($shop->api()->rest('GET', '/admin/api/2022-10/webhooks.json'));
+                $shop->api()->rest('post', '/admin/api/2022-10/webhooks.json', [
+            'webhook'=>[
+                'topic' => 'orders/create',
+                'address' => 'https://phpstack-946419-4061850.cloudwaysapps.com/webhook/orders-create'
+            ]
+        ]);
+                $webhook = $shop->api()->rest('GET', '/admin/api/2022-10/webhooks.json');
+        dd($webhook);
         if ($next) {
             $response = $shop->api()->rest('GET', '/admin/api/2022-10/orders.json', ["page_info" => $next, "limit" => 250]);
         } else {
