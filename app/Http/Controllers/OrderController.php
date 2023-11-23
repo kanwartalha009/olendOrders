@@ -110,6 +110,7 @@ class OrderController extends Controller
     public function ordersSync($next = null)
     {
         $shop = User::first();
+        dd($shop->api()->rest('GET', '/admin/api/2022-10/webhooks.json'));
         if ($next) {
             $response = $shop->api()->rest('GET', '/admin/api/2022-10/orders.json', ["page_info" => $next, "limit" => 250]);
         } else {
