@@ -50,23 +50,16 @@ return [
     | This can help you avoid collisions with your existing route names.
     |
     */
-    /*
-|--------------------------------------------------------------------------
-| Route names
-|--------------------------------------------------------------------------
-|
-| This option allows you to override the package's built-in route names.
-| This can help you avoid collisions with your existing route names.
-|
-*/
     'route_names' => [
         'home'                 => env('SHOPIFY_ROUTE_NAME_HOME', 'home'),
         'authenticate'         => env('SHOPIFY_ROUTE_NAME_AUTHENTICATE', 'authenticate'),
-        'authenticate.token'   => env('SHOPIFY_ROUTE_NAME_AUTHENTICATE_TOKEN', 'authenticate.token'),
+        'authenticate.oauth'   => env('SHOPIFY_ROUTE_NAME_AUTHENTICATE_OAUTH', 'authenticate.oauth'),
         'billing'              => env('SHOPIFY_ROUTE_NAME_BILLING', 'billing'),
         'billing.process'      => env('SHOPIFY_ROUTE_NAME_BILLING_PROCESS', 'billing.process'),
         'billing.usage_charge' => env('SHOPIFY_ROUTE_NAME_BILLING_USAGE_CHARGE', 'billing.usage_charge'),
         'webhook'              => env('SHOPIFY_ROUTE_NAME_WEBHOOK', 'webhook'),
+        'itp'                  => env('SHOPIFY_ROUTE_NAME_ITP', 'itp'),
+        'itp.ask'              => env('SHOPIFY_ROUTE_NAME_ITP_ASK', 'itp.ask'),
     ],
 
     /*
@@ -116,7 +109,7 @@ return [
     |
     */
 
-    'appbridge_enabled' => (bool) env('SHOPIFY_APPBRIDGE_ENABLED', true),
+    'appbridge_enabled' => (bool) env('SHOPIFY_APPBRIDGE_ENABLED', false),
 
     // Use semver range to link to a major or minor version number.
     // Leaving empty will use the latest verison - not recommended in production.
@@ -312,11 +305,13 @@ return [
     */
 
     'webhooks' => [
-        [
-            'topic' => 'orders/create',
-            'address' => 'https://phpstack-946419-4061850.cloudwaysapps.com/webhook/orders-create'
-        ],
-
+        /*
+            [
+                'topic' => env('SHOPIFY_WEBHOOK_1_TOPIC', 'orders/create'),
+                'address' => env('SHOPIFY_WEBHOOK_1_ADDRESS', 'https://some-app.com/webhook/orders-create')
+            ],
+            ...
+        */
     ],
 
     /*
