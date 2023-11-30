@@ -133,11 +133,13 @@ class OrderController extends Controller
     public function testSave(Request $request){
         $input = $request->search;
 
-// Remove English characters using a regular expression
-        $nonEnglishOnly = preg_replace('/[\p{L}]/u', '', $input);
+        $allText = implode(' ', $input);
+
+// Extract non-English alphabetic characters using a regular expression
+        $nonEnglishAlphabets = preg_replace('/[^[:alpha:]]/u', '', $allText);
 
 // Display the result
-        echo $nonEnglishOnly;
+        echo $nonEnglishAlphabets;
 
     }
 }

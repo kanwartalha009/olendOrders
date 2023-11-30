@@ -8,7 +8,7 @@
         <div class="col-lg-12 col-sm-12 pt-3">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('test.save') }}" method="get">
+                    <form action="{{ route('test.save') }}" method="post">
                         <div class="row">
                             <div class="col-md-10 col-sm-12">
                                 <textarea type="text" class="form-control h-100" placeholder="search" name="search"></textarea>
