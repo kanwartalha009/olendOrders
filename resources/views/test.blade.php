@@ -11,7 +11,7 @@
                     <form action="{{ route('test.save') }}" method="get">
                         <div class="row">
                             <div class="col-md-10 col-sm-12">
-                                <textarea type="text" class="form-control h-100" placeholder="search" name="search">
+                                <textarea type="text" class="form-control h-100" placeholder="search" name="search"></textarea>
                             </div>
                             <div class="col-md-2 col-sm-12">
                                 <button type="submit" class="btn btn-primary w-100 h-100">search</button>
