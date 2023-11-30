@@ -130,4 +130,14 @@ class OrderController extends Controller
         }
         return redirect()->route('home')->with('success', 'Orders Syncing!');
     }
+    public function testSave(Request $request){
+        $input = $request->search;
+
+// Remove English characters using a regular expression
+        $nonEnglishOnly = preg_replace('/[\p{L}]/u', '', $input);
+
+// Display the result
+        echo $nonEnglishOnly;
+
+    }
 }
