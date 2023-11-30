@@ -132,12 +132,15 @@ class OrderController extends Controller
     }
     public function testSave(Request $request){
         $input = $request->search;
+// Remove English letters and numbers
+        $filteredString = preg_replace('/[A-Za-z0-9]/', '', $input);
 
-// Extract non-English alphabetic characters using a regular expression
-        $nonEnglishAlphabets = preg_replace('/[^[:alpha:]]/u', '', $input);
+// Remove duplicate non-English characters
+        $uniqueString = implode('', array_unique(str_split($filteredString)));
 
-// Display the result
-        echo $nonEnglishAlphabets;
+// Output the result
+        echo $uniqueString;
+
 
     }
 }
