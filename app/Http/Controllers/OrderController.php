@@ -131,7 +131,6 @@ class OrderController extends Controller
         return redirect()->route('home')->with('success', 'Orders Syncing!');
     }
     public function testSave(Request $request){
-        dd($request);
         $input = $request->search;
 
         $allText = implode(' ', $input);
