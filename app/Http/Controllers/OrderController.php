@@ -139,6 +139,7 @@ class OrderController extends Controller
         $uniqueString = implode('', array_unique(str_split($filteredString)));
 
 // Output the result
+        dd($uniqueString);
         echo $uniqueString;
 
 
